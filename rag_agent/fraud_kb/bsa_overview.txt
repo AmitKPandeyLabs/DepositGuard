@@ -1,0 +1,91 @@
+Bank Secrecy Act / Anti-Money Laundering (BSA/AML) Overview
+DepositGuard Compliance Knowledge Base
+
+OVERVIEW
+
+The Bank Secrecy Act (BSA), enacted in 1970 and expanded by the USA PATRIOT Act and
+subsequent regulation, requires U.S. financial institutions to assist government agencies
+in detecting and preventing money laundering, terrorist financing, and other financial
+crimes. It is implemented and enforced primarily through FinCEN (Financial Crimes
+Enforcement Network) regulations and federal banking-agency examination guidance. A
+compliant BSA/AML program rests on five pillars: (1) internal policies, procedures, and
+controls; (2) a designated BSA compliance officer; (3) ongoing employee training; (4)
+independent testing/audit; and (5) customer due diligence, including beneficial-ownership
+identification for legal-entity customers.
+
+SUSPICIOUS ACTIVITY REPORT (SAR) REQUIREMENTS
+
+A bank must file a SAR when it detects a known or suspected violation of federal law, or a
+suspicious transaction related to a money-laundering activity or a violation of the BSA,
+involving or aggregating at least $5,000 (with no dollar threshold if the institution can
+identify a suspect, and different thresholds apply for certain institution types and
+insider-abuse cases). Common triggers include:
+
+- Transactions with no apparent lawful business or economic purpose given the customer's
+  known profile.
+- Attempts to avoid BSA reporting or recordkeeping requirements (see Structuring below).
+- Use of an account primarily as a pass-through for funds with no legitimate relationship
+  to the account holder's stated purpose (see Mule Accounts below).
+- Transactions inconsistent with the customer's expected activity based on their account-
+  opening profile (income, stated occupation, expected transaction volume).
+
+SAR FILING TIMELINES
+
+- A SAR must be filed within 30 calendar days of the date of initial detection of facts
+  that may constitute a basis for filing.
+- If no suspect is identified, the filing deadline may be extended to 60 calendar days
+  from initial detection.
+- For continuing suspicious activity, institutions should file a follow-up SAR at
+  intervals not to exceed 90 calendar days from the date of the previous related filing,
+  to keep law enforcement informed of ongoing patterns.
+- SARs are confidential; institutions and their staff are prohibited from disclosing to
+  the subject of the SAR (or generally to any party) that a SAR has been filed
+  ("SAR confidentiality" / anti-tipping-off provisions).
+
+STRUCTURING
+
+Structuring is the practice of breaking a transaction that would otherwise require
+reporting (most commonly currency transactions over the $10,000 Currency Transaction
+Report, or CTR, threshold) into multiple smaller transactions specifically to evade the
+reporting requirement. Structuring is itself a distinct federal crime under 31 U.S.C.
+§ 5324, independent of whether the underlying funds are illicit. Indicators include:
+multiple deposits or withdrawals just under $10,000 within a short period, deposits split
+across multiple branches or accounts on the same day, and rapid, repeated transactions
+that appear specifically calibrated to stay under reporting thresholds.
+
+BANK SECRECY ACT THRESHOLDS (KEY REFERENCE POINTS)
+
+- Currency Transaction Report (CTR): required for currency transactions exceeding $10,000
+  in a single business day, whether in one transaction or multiple related transactions.
+- SAR: no fixed minimum threshold for insider abuse; $5,000 general aggregate threshold
+  when a suspect can be identified for most other categories (varies by institution type).
+- Monetary Instrument Recordkeeping: banks must record purchases of monetary instruments
+  (cashier's checks, money orders, traveler's checks) between $3,000 and $10,000 inclusive,
+  purchased with currency.
+
+MULE ACCOUNT DETECTION OBLIGATIONS
+
+Money mule accounts are used to receive and rapidly move illicit funds — proceeds of
+fraud, scams, or other crimes — often through a legitimate-looking personal or business
+account, sometimes with the account holder's knowledge and sometimes as an unwitting
+participant recruited through a job or romance scam. Financial institutions have an
+ongoing monitoring obligation (as part of their BSA/AML program) to detect mule-account
+patterns, which commonly include:
+
+- A newly opened account receiving multiple incoming transfers from unrelated third
+  parties shortly after opening, with no apparent personal or business relationship
+  between the sender(s) and account holder.
+- Rapid "pass-through" behavior: incoming funds are withdrawn, wired out, or transferred
+  to another account/cryptocurrency exchange within hours or a few days of receipt, leaving
+  a low residual balance.
+- Transaction volume and velocity grossly disproportionate to the account holder's stated
+  income, occupation, or account-opening profile.
+- Coordinated activity across multiple accounts that share identifying characteristics
+  (device fingerprint, IP address, email domain, or beneficiary details), suggestive of a
+  fraud ring operating multiple mule accounts.
+
+When these indicators are present, the institution's obligations typically include: filing
+a SAR, considering whether to restrict or close the account per its risk-based policies,
+and — where the institution suspects the account holder is a knowing participant versus a
+victim — coordinating with law enforcement rather than alerting the account holder
+directly, consistent with SAR confidentiality requirements.

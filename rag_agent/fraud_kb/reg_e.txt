@@ -1,0 +1,96 @@
+Regulation E — Electronic Fund Transfer Act (12 CFR Part 1005)
+DepositGuard Compliance Knowledge Base
+
+OVERVIEW
+
+Regulation E implements the Electronic Fund Transfer Act (EFTA) and governs electronic
+fund transfers (EFTs) involving consumer accounts, including ATM transactions, point-of-sale
+debit card transactions, ACH transfers, direct deposits, preauthorized transfers, and
+person-to-person (P2P) transfers. It establishes the rights, liabilities, and responsibilities
+of consumers and financial institutions for electronic transfers, and sets out the process
+banks must follow when a consumer reports an error or an unauthorized transaction.
+
+SCOPE OF PROTECTED TRANSFERS
+
+Reg E covers any transfer of funds initiated through an electronic terminal, telephone,
+computer, or magnetic tape that instructs a financial institution to debit or credit a
+consumer's account. This includes debit card purchases, ATM withdrawals, ACH debits and
+credits, online bill pay, and P2P payment network transfers (e.g., Zelle) when routed
+through a participating financial institution. Wire transfers and checks are generally
+excluded from Reg E and are governed by other frameworks (UCC Article 4A, Regulation CC).
+
+ERROR RESOLUTION PROCESS
+
+When a consumer notifies the institution — orally or in writing — of a suspected error
+(including an unauthorized transfer), the institution must:
+
+1. Investigate the alleged error promptly.
+2. Complete the investigation within 10 business days of receiving the notice of error.
+3. Report the results to the consumer within 3 business days after completing the
+   investigation, and correct the error within 1 business day of determining an error
+   occurred.
+
+45-DAY EXTENDED INVESTIGATION AND PROVISIONAL CREDIT
+
+If the institution cannot complete its investigation within the standard 10-business-day
+window, it may take up to 45 calendar days total to investigate, provided it:
+
+1. Provisionally credits the consumer's account for the disputed amount (less any
+   applicable hold) within 10 business days of the notice of error (20 business days for
+   accounts open less than 30 days).
+2. Notifies the consumer of the provisional credit within 2 business days of providing it.
+3. Gives the consumer full use of the provisionally credited funds while the investigation
+   continues.
+
+The 45-day window extends to 90 calendar days for: (a) transfers initiated outside the
+United States, (b) point-of-sale debit card transactions, and (c) transfers involving new
+accounts (open less than 30 days).
+
+If the institution determines no error occurred, it may reverse the provisional credit,
+but must first: send a written explanation, provide copies of the documents relied upon
+if requested, and give the consumer 3 business days' notice before debiting the
+provisionally credited funds back out of the account.
+
+UNAUTHORIZED TRANSFER LIABILITY LIMITS (CONSUMER)
+
+Consumer liability for unauthorized EFTs is tiered based on how quickly the consumer
+reports the loss or theft of an access device or discovers unauthorized activity:
+
+- $50 maximum liability if the consumer notifies the institution within 2 business days
+  of learning of the loss, theft, or unauthorized transfer.
+- $500 maximum liability if the consumer fails to notify the institution within 2
+  business days but does notify within 60 days after the statement showing the
+  unauthorized transfer was sent.
+- Unlimited liability if the consumer fails to report the unauthorized transfer within
+  60 days of the statement date, for any subsequent unauthorized transfers that
+  reasonable notice would have prevented.
+
+These liability limits apply to unauthorized transfers involving an access device (e.g., a
+compromised debit card or online credentials used by a third party). They do not apply to
+transfers the consumer themselves authorized, even if the consumer was later defrauded
+into authorizing them (e.g., certain authorized push-payment / social-engineering scams),
+which is an evolving area of interpretation and enforcement guidance.
+
+ACH DISPUTE PROCESS
+
+For ACH-specific disputes, Reg E error-resolution timelines apply on the receiving
+depository financial institution (RDFI) side once a consumer disputes a transaction:
+
+1. Consumer contacts the bank and asserts the ACH debit was unauthorized or in error.
+2. The bank opens a Reg E claim and begins the standard 10-business-day investigation
+   clock (or invokes the 45/90-day provisional-credit extension described above).
+3. Separately, under NACHA Operating Rules, the RDFI may initiate an unauthorized-entry
+   return (commonly R05, R07, R10, or R29 depending on the fact pattern) back through the
+   ACH network within 60 calendar days of the settlement date for consumer accounts, to
+   recover funds from the originating institution.
+4. The Reg E investigation and the NACHA return process run in parallel; the Reg E
+   provisional-credit obligation to the consumer is not contingent on successfully
+   recovering funds through the ACH return.
+
+DOCUMENTATION AND RECORD-KEEPING
+
+Institutions must retain records of Reg E error claims, including the consumer's notice,
+the investigation findings, and any correspondence, for a minimum of 2 years from the date
+the institution was required to comply. These records are a primary source institutions
+must be able to produce for examiner review and for internal fraud-investigation audit
+trails.

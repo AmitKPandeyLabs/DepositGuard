@@ -1,0 +1,95 @@
+Deposit Account Fraud Type Definitions and Behavioral Signals
+DepositGuard Compliance Knowledge Base
+
+OVERVIEW
+
+This reference defines the primary fraud typologies relevant to deposit account
+origination and servicing, and lists the behavioral signals investigators and models use
+to distinguish each type. These typologies are not mutually exclusive — a single account
+can exhibit signals from more than one category (e.g., an account opened via new-account
+fraud is later used as a mule account).
+
+NEW ACCOUNT FRAUD
+
+Definition: Fraud committed at account origination, where the applicant uses a stolen,
+synthetic, or fabricated identity to open a deposit account with no intent of legitimate,
+ongoing use. The goal is typically to obtain a credit line, receive fraudulent deposits
+(e.g., counterfeit checks or stolen funds), or establish an account for money-laundering
+purposes before the fraud is detected.
+
+Key behavioral signals:
+- Low name-to-email similarity or other identity-verification mismatches at application.
+- Use of a free/disposable email provider combined with a newly created email address.
+- High velocity of applications sharing a device fingerprint, IP address, or partial
+  identity attributes within a short time window (zip_count_4w, velocity_6h/24h/4w style
+  features).
+- Short or nonexistent address history (low prev/current address tenure).
+- Request for a credit limit disproportionate to the stated income or credit risk profile.
+- Application submitted very rapidly after the originating session/request began (low
+  days_since_request), suggesting a scripted or bulk-application pattern rather than an
+  organic customer journey.
+- Invalid or unverifiable phone contact fields (phone_home_valid / phone_mobile_valid
+  both false).
+
+ACH FRAUD
+
+Definition: Fraud involving the ACH network — either unauthorized debits pulled from a
+victim's account (often following account takeover or stolen banking credentials), or
+fraudulent origination of ACH entries by a bad actor who has gained access to origination
+credentials.
+
+Key behavioral signals:
+- NACHA unauthorized-debit return codes on the account: R05, R10, or R29 (see
+  nacha_return_codes.txt), particularly multiple occurrences or occurrences clustered
+  around a credential or contact-detail change.
+- Sudden change in the account's registered contact details (email, phone, device)
+  immediately preceding disputed transactions.
+- A burst of ACH transaction volume inconsistent with the account's established pattern.
+- Return-code churn (a mix of R07 disputes following what looks like account compromise
+  rather than simple subscription cancellations).
+
+CHECK FRAUD
+
+Definition: Fraud involving forged, altered, or counterfeit checks, or check-kiting
+schemes that exploit the float between deposit and clearing to withdraw funds against
+checks that later bounce.
+
+Key behavioral signals:
+- Rapid deposit-then-withdrawal cycles: a check is deposited (often via remote deposit
+  capture) and a large share of the funds is withdrawn or transferred out before the
+  check has had time to clear.
+- Deposited check amounts clustered just under manual-review or holds thresholds.
+- Checks drawn from payers with no apparent relationship to the account holder, or from
+  accounts that themselves show fraud indicators.
+- Elevated R01/R09 (insufficient/uncollected funds) return activity in combination with
+  large, rapid outbound transfers — a pattern consistent with check-kiting across
+  multiple accounts.
+
+MULE ACCOUNT FRAUD
+
+Definition: An account used to receive and quickly move illicit funds on behalf of a
+fraud or money-laundering operation, whether the account holder is a knowing participant
+or an unwitting victim recruited through a job, romance, or investment scam. See
+bsa_overview.txt for the related regulatory (SAR) obligations.
+
+Key behavioral signals:
+- Multiple incoming transfers from unrelated third parties shortly after account opening,
+  with no apparent personal or business relationship to the account holder.
+- Rapid pass-through behavior: funds received are withdrawn, wired, or transferred out
+  within hours to a few days, leaving minimal residual balance (low bank_months_count /
+  bank_branch_count activity paired with high transaction velocity).
+- Transaction volume grossly disproportionate to the account holder's stated income,
+  occupation, or credit-risk profile at origination.
+- Shared device, IP, or session characteristics with other flagged accounts, suggesting
+  coordinated fraud-ring activity (device_distinct_emails_8w, device_fraud_count).
+- Newly opened account (low bank_months_count) with an immediate spike in transaction
+  activity rather than the gradual ramp-up typical of legitimate usage.
+
+USING THESE DEFINITIONS IN INVESTIGATION
+
+When an account is flagged for review, investigators should map the account's top
+risk-driving features (e.g., from a SHAP explanation) to the typology whose behavioral
+signals best match the observed pattern, then consult the corresponding regulatory
+guidance (Regulation E for unauthorized-transfer handling, NACHA return codes for
+ACH-specific signals, and the BSA/AML overview for SAR and mule-account obligations) to
+determine the appropriate investigative and reporting response.

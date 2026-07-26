@@ -1,0 +1,77 @@
+NACHA ACH Return Codes — Fraud-Relevant Reference
+DepositGuard Compliance Knowledge Base
+
+OVERVIEW
+
+NACHA (the National Automated Clearing House Association) defines standardized return
+codes that a Receiving Depository Financial Institution (RDFI) uses to send an ACH entry
+back to the Originating Depository Financial Institution (ODFI) when it cannot or will not
+post the entry as submitted. Return codes fall into several categories: administrative
+(bad account data), NSF/funds-related, and unauthorized/disputed-authorization codes. The
+codes below are the ones most relevant to fraud investigation and risk scoring.
+
+R01 — INSUFFICIENT FUNDS
+Description: The available balance in the receiver's account is not sufficient to cover
+the dollar value of the debit entry.
+Fraud risk level: LOW. R01 is a routine funds-availability return, not an indicator of
+unauthorized activity. High R01 frequency on an account can indicate financial distress or
+mismanagement, but on its own is not a fraud signal. It becomes relevant to fraud
+monitoring only when paired with unusual account velocity or a pattern of large debits
+immediately following deposits (potential check-kiting or first-party fraud).
+
+R09 — UNCOLLECTED FUNDS
+Description: A sufficient ledger balance exists, but a sufficient collected (available)
+balance does not exist, typically because recently deposited funds have not yet cleared.
+Fraud risk level: LOW. Similar to R01, this is primarily an operational/funds-timing
+return. Repeated R09 returns combined with rapid redeposit-and-withdrawal cycles can be a
+weak signal of check-kiting or deposit fraud, but is not itself indicative of unauthorized
+transaction fraud.
+
+R05 — UNAUTHORIZED DEBIT TO CONSUMER ACCOUNT USING CORPORATE SEC CODE
+Description: A consumer's account was debited using a corporate (CCD) Standard Entry Class
+code rather than a consumer-authorized code, and the receiver states the debit was not
+authorized.
+Fraud risk level: HIGH. R05 is a direct unauthorized-debit assertion and is one of the
+strongest ACH-side fraud signals. It frequently correlates with account takeover, business
+email compromise feeding fraudulent origination, or a fraud ring using a compromised
+account/routing number pair. R05 returns should route to fraud investigation, not routine
+operations queues.
+
+R07 — AUTHORIZATION REVOKED BY CUSTOMER
+Description: The receiver has revoked authorization previously provided to the originator
+for a specific recurring or single debit entry.
+Fraud risk level: MEDIUM-HIGH. R07 typically reflects a legitimate authorization dispute
+(e.g., a canceled subscription still being billed) but is also used when a consumer
+disavows ever having authorized a transaction in the first place, which shades into
+unauthorized-debit territory. Distinguishing "revoked legitimate authorization" from
+"denies ever authorizing" requires investigator review of the consumer's statement; treat
+clusters of R07 on a single account, or R07 following a sudden account-detail change, as
+elevated risk.
+
+R10 — CUSTOMER ADVISES ORIGINATOR IS NOT KNOWN TO RECEIVER AND/OR NOT AUTHORIZED
+Description: The receiver claims they do not recognize the originator and/or never
+authorized the originator to debit their account.
+Fraud risk level: HIGH. R10 is the consumer-account counterpart to R29 and is a core
+unauthorized-debit signal, commonly seen in account-takeover fraud, identity theft used to
+originate debits against a victim's account, and fraud-ring test transactions. A single
+R10 warrants review; multiple R10 returns tied to the same originator or the same
+receiving account within a short window is a strong escalation trigger.
+
+R29 — CORPORATE CUSTOMER ADVISES NOT AUTHORIZED
+Description: The corporate/business receiver states the debit entry was not authorized,
+the business-account analog of R10.
+Fraud risk level: HIGH. R29 often indicates business email compromise (BEC), a
+compromised treasury/payments workflow, or an insider-originated fraudulent debit. Because
+commercial accounts typically carry higher transaction limits, R29 returns should be
+treated as high-severity and escalated promptly, with attention to whether the same
+origination credentials produced other suspicious entries.
+
+USING RETURN CODES IN RISK SCORING
+
+For account-level fraud risk scoring, unauthorized-debit codes (R05, R10, R29) should
+carry substantially more weight than funds-availability codes (R01, R09). R07 sits in
+between and should be weighted based on frequency and context (isolated R07 = likely
+legitimate dispute; recurring or account-change-correlated R07 = elevated risk). None of
+these codes alone proves fraud — they are signals to be combined with other behavioral and
+account-opening features (device/identity mismatch, velocity, account tenure) in a
+composite risk assessment.
