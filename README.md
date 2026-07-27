@@ -11,6 +11,23 @@
 
 DepositGuard is an end-to-end deposit account fraud detection system: it engineers behavioral risk features from account-opening data, benchmarks four classifiers under realistic class imbalance, explains individual risk scores with SHAP, and routes high-risk accounts through a multi-agent LangGraph pipeline that grounds its reasoning in real regulatory text before handing off to a deterministic, auditable escalation decision — all surfaced through a live Streamlit dashboard.
 
+## Table of Contents
+
+- [Project Overview & Business Problem](#project-overview--business-problem)
+- [Dataset](#dataset)
+- [Methodology](#methodology)
+  - [1. Feature Engineering](#1-feature-engineering)
+  - [2. Exploratory Data Analysis](#2-exploratory-data-analysis)
+  - [3. Predictive Modeling](#3-predictive-modeling)
+- [Results & Key Findings](#results--key-findings)
+- [Fraud Investigation Pipeline (Final System)](#fraud-investigation-pipeline-final-system)
+- [Streamlit Dashboard](#streamlit-dashboard)
+- [Conclusion](#conclusion)
+- [Future Enhancements](#future-enhancements)
+- [Tools & Technologies Used](#tools--technologies-used)
+- [How to Run This Project](#how-to-run-this-project)
+- [License](#license)
+
 ## Project Overview & Business Problem
 
 Deposit account fraud — new account fraud, ACH fraud, mule accounts, check fraud — costs U.S. banks billions of dollars annually. Most institutions still lean on legacy, rules-based detection: static SQL/Oracle trigger logic that fires on known patterns but misses novel combinations of behavioral signals, backed by manual analyst investigation against dense regulatory text (Reg E, NACHA, BSA/AML). That combination is slow, inconsistent across analysts, and hard to audit at scale.
@@ -57,11 +74,19 @@ Ten behavioral risk features are engineered on top of the raw dataset (`notebook
 
 **Fraud rate by month** (`outputs/fraud_by_month.png`) — fraud rate climbs from a low of 0.87% (month 2) to a high of 1.47% (month 7) across the dataset's 8-month span, indicating real temporal drift rather than a stationary fraud rate. This is why the modeling stage uses a temporal split (train on months 0–5, test on 6–7) instead of a random shuffle — a random split would let the model implicitly "see" the harder, higher-fraud-rate future during training.
 
+<p align="center"><img src="outputs/fraud_by_month.png" width="800" alt="Fraud rate by month"></p>
+
 **Feature distributions by fraud status** (`outputs/feature_distributions.png`) — `income`, `customer_age`, and `credit_risk_score` split by `fraud_bool` show visibly shifted distributions for fraudulent applications, most notably in `credit_risk_score`, which also emerges as the single strongest linear correlate of fraud (r = 0.071) among the original numeric features.
+
+<p align="center"><img src="outputs/feature_distributions.png" width="800" alt="Feature distributions by fraud status"></p>
 
 **Correlation heatmap** (`outputs/correlation_heatmap.png`) — no single original feature strongly predicts fraud in isolation (correlations with `fraud_bool` are all comparatively weak), which is the core motivation for engineering composite behavioral features rather than relying on raw fields alone.
 
+<p align="center"><img src="outputs/correlation_heatmap.png" width="800" alt="Correlation heatmap"></p>
+
 **Fraud rate by category** (`outputs/fraud_by_category.png`) — `payment_type` category `AC` has the highest fraud rate (1.67%) among payment types, and `employment_status` category `CC` has the highest fraud rate (2.47%) among employment categories, both well above their peers — confirming categorical fields carry real signal despite being anonymized.
+
+<p align="center"><img src="outputs/fraud_by_category.png" width="800" alt="Fraud rate by category"></p>
 
 ### 3. Predictive Modeling
 
@@ -83,7 +108,11 @@ Four classifiers are trained on the feature-engineered dataset (`notebooks/03_mo
 
 **Key Finding:** XGBoost wins on AUC-ROC (0.8892) — the standard threshold-independent metric for imbalanced binary classification, since it measures ranking quality rather than performance at one arbitrary cutoff. This matters here because the compounded SMOTE + class-weighting setup pushes all four models toward high recall / lower precision at the default 0.5 threshold; a deployment would still need the winning model's threshold tuned against a business-defined cost trade-off between missed fraud and blocked legitimate customers.
 
-![Feature Importance](outputs/feature_importance.png)
+<p align="center">
+  <img src="outputs/feature_importance.png" width="420" alt="Feature Importance (mean absolute SHAP value)">
+  <img src="outputs/shap_summary.png" width="420" alt="SHAP Summary (beeswarm)">
+</p>
+<p align="center"><em>Left: global feature importance (mean |SHAP value|). Right: SHAP beeswarm summary showing per-account value spread.</em></p>
 
 Top SHAP-ranked features driving individual risk scores (`notebooks/04_risk_scoring_shap.ipynb`, computed on a 10,000-account sample from the held-out temporal test period):
 
@@ -105,6 +134,14 @@ HIGH-risk accounts (fraud probability ≥ 0.75) don't stop at a risk score — t
 2. **Investigation** — retrieves relevant regulatory/fraud-typology text from a ChromaDB knowledge base (Reg E, NACHA return codes, BSA/AML overview, and fraud-type definitions, chunked and embedded from `rag_agent/fraud_kb/`), then asks an LLM to reason over the account's real top-5 SHAP features plus that retrieved context — **Google Gemini first, Groq (Llama 3.3 70B) as automatic fallback** on any Gemini failure. The LLM is constrained to return only `confidence`, `root_cause`, `regulatory_flags`, and a self-`critique`, each grounded explicitly in the SHAP features and retrieved text provided — it cannot invent a feature or cite a regulation not present in the retrieved context. If the returned confidence score falls below 0.80, the conditional edge routes back into Investigation for a second, broadened retrieval pass (capped at 2 passes total) before proceeding.
 3. **Escalation** — applies a fixed, deterministic rule (`rag_agent/tools.py::make_escalation_decision`) over the account's risk tier, fraud probability, and any regulatory flags raised: HIGH risk with probability ≥ 0.90 → **FREEZE**; HIGH risk otherwise → **ESCALATE**; MEDIUM risk with regulatory flags → **ESCALATE**; MEDIUM with none → **MONITOR**; otherwise → **CLEAR**. This decision is never made by the LLM — it's a plain conditional over numbers and flags, which is what makes the final action auditable. The full report (investigation findings + rule-based decision + reasoning) is written to `rag_agent/outputs/escalation_reports/` as JSON and logged to a ChromaDB episodic-memory collection for future retrieval.
 
+Risk tier breakdown across the full 1,000,000 scored accounts (`notebooks/04_risk_scoring_shap.ipynb`):
+
+| Risk Tier | Threshold | Account Count | % of Population | Action Taken |
+|---|---|---|---|---|
+| HIGH | fraud probability ≥ 0.75 | 5,411 | 0.541% | Routed to Investigation → **FREEZE** (≥ 0.90) or **ESCALATE** |
+| MEDIUM | 0.40 ≤ fraud probability < 0.75 | 29,449 | 2.945% | Flagged for manual review → **ESCALATE** (regulatory flags) or **MONITOR** |
+| LOW | fraud probability < 0.40 | 965,140 | 96.514% | Auto-cleared → **CLEAR** |
+
 Sample accounts from real generated escalation reports:
 
 | Account | Fraud Probability | Risk Tier | Final Decision |
@@ -121,7 +158,7 @@ The full system is served as a three-page live dashboard (`app.py`):
 - **Model insights** — the full 4-model comparison (AUC-ROC / Precision / Recall / F1 / FPR) with the winning model highlighted, the SHAP feature-importance chart, and a recomputed top-10 SHAP breakdown as a cross-check.
 - **Case review** — pick any HIGH-risk account to see its top-5 SHAP drivers, its full LangGraph escalation report (confidence, root cause, regulatory flags, analyst question, self-critique, final decision), and fraud-probability trends binned by feature.
 
-**Live app:** [#](#)
+**Live app:** [depositguard.streamlit.app](https://depositguard.streamlit.app/)
 
 ## Conclusion
 
