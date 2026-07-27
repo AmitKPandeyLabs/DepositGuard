@@ -1,0 +1,24 @@
+{
+  "account_id": 943674,
+  "generated_at": "2026-07-19T18:44:49.437728+00:00",
+  "risk_tier": "HIGH",
+  "fraud_probability": 0.830844,
+  "investigation": {
+    "root_cause": "This account was flagged as high risk primarily due to the strong positive contributions from the device operating system being Windows and the involvement of ACH payment types. A higher credit risk score also significantly increased the fraud probability, while a longer current address tenure and younger customer age were identified as additional risk factors by the model for this specific account.",
+    "confidence": "Very High (83.08%)",
+    "regulatory_flags": [
+      "ACH FRAUD",
+      "MULE ACCOUNT FRAUD",
+      "SUSPICIOUS ACTIVITY REPORT (SAR) REQUIREMENTS"
+    ],
+    "ai_recommended_action": "Immediate account review \u2014 consider temporary freeze pending investigation",
+    "analyst_question": "Can you confirm the device used during account opening matches the applicant's stated location?",
+    "initial_assessment": "This account was flagged as high risk primarily due to the strong positive contributions from the device operating system being Windows and the involvement of ACH payment types. A higher credit risk score also significantly increased the fraud probability, while a longer current address tenure and younger customer age were identified as additional risk factors by the model for this specific account.. Confidence: Very High (83.08%). This account's fraud probability (0.8308) is higher than 99.8% of the 10,000-account scored sample. Recommended action: Immediate account review \u2014 consider temporary freeze pending investigation",
+    "critique": "This assessment is limited by the absence of actual feature values (e.g., the specific credit risk score or customer age) and a lack of transaction-level behavioral signals, which would provide crucial context for interpreting the model's drivers and confirming specific fraud typologies.",
+    "refined_assessment": "This account was flagged as high risk primarily due to the strong positive contributions from the device operating system being Windows and the involvement of ACH payment types. A higher credit risk score also significantly increased the fraud probability, while a longer current address tenure and younger customer age were identified as additional risk factors by the model for this specific account.. Regulatory considerations: ACH FRAUD; MULE ACCOUNT FRAUD; SUSPICIOUS ACTIVITY REPORT (SAR) REQUIREMENTS.",
+    "retrieval_passes": 1
+  },
+  "rule_based_decision": "ESCALATE",
+  "rule_based_reason": "HIGH risk tier (fraud probability 0.831) \u2014 escalate to fraud investigation team.",
+  "final_decision": "ESCALATE"
+}

@@ -1,0 +1,25 @@
+{
+  "account_id": 812568,
+  "generated_at": "2026-07-19T19:08:36.479997+00:00",
+  "risk_tier": "HIGH",
+  "fraud_probability": 0.9303346,
+  "investigation": {
+    "root_cause": "The account exhibits strong indicators of identity manipulation, with the same date of birth linked to multiple distinct email addresses within a short period and a short current address history, suggesting potential new account fraud. The model also flags the payment type (ACH) and the device's operating system (Windows) as significant risk factors, alongside a contributing credit risk profile.",
+    "confidence": "Very High (93%)",
+    "regulatory_flags": [
+      "New Account Fraud",
+      "ACH Fraud",
+      "Mule Account Fraud",
+      "Suspicious Activity Report (SAR) Requirements"
+    ],
+    "ai_recommended_action": "Immediate account review \u2014 consider temporary freeze pending investigation",
+    "analyst_question": "Can you confirm the device used during account opening matches the applicant's stated location?",
+    "initial_assessment": "The account exhibits strong indicators of identity manipulation, with the same date of birth linked to multiple distinct email addresses within a short period and a short current address history, suggesting potential new account fraud. The model also flags the payment type (ACH) and the device's operating system (Windows) as significant risk factors, alongside a contributing credit risk profile.. Confidence: Very High (93%). This account's fraud probability (0.9303) is higher than 100.0% of the 10,000-account scored sample. Recommended action: Immediate account review \u2014 consider temporary freeze pending investigation",
+    "critique": "This assessment is limited by the absence of specific feature values (e.g., the actual number of distinct emails, the exact credit risk score, or the address tenure), which would provide more granular context for the model's drivers. Additionally, transaction-level details are not available to confirm behavioral patterns like rapid fund movement.",
+    "refined_assessment": "The account exhibits strong indicators of identity manipulation, with the same date of birth linked to multiple distinct email addresses within a short period and a short current address history, suggesting potential new account fraud. The model also flags the payment type (ACH) and the device's operating system (Windows) as significant risk factors, alongside a contributing credit risk profile.. Regulatory considerations: New Account Fraud; ACH Fraud; Mule Account Fraud; Suspicious Activity Report (SAR) Requirements.",
+    "retrieval_passes": 1
+  },
+  "rule_based_decision": "FREEZE",
+  "rule_based_reason": "HIGH risk tier with fraud probability 0.930 >= 0.90 threshold \u2014 immediate account freeze pending manual review.",
+  "final_decision": "FREEZE"
+}

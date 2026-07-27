@@ -1,0 +1,24 @@
+{
+  "account_id": 822236,
+  "generated_at": "2026-07-19T19:07:47.888701+00:00",
+  "risk_tier": "HIGH",
+  "fraud_probability": 0.9406589,
+  "investigation": {
+    "root_cause": "The account was flagged primarily due to a significant contribution from the device operating system being Windows, a specific payment type (AC), and a higher credit risk score. A longer current address history also contributed to the elevated fraud probability, suggesting potential misuse of an established identity or account.",
+    "confidence": "High (94.07%)",
+    "regulatory_flags": [
+      "ACH Fraud",
+      "Mule Account Fraud",
+      "SAR Requirements (BSA/AML)"
+    ],
+    "ai_recommended_action": "Immediate account review \u2014 consider temporary freeze pending investigation",
+    "analyst_question": "Can you confirm the device used during account opening matches the applicant's stated location?",
+    "initial_assessment": "The account was flagged primarily due to a significant contribution from the device operating system being Windows, a specific payment type (AC), and a higher credit risk score. A longer current address history also contributed to the elevated fraud probability, suggesting potential misuse of an established identity or account.. Confidence: High (94.07%). This account's fraud probability (0.9407) is higher than 100.0% of the 10,000-account scored sample. Recommended action: Immediate account review \u2014 consider temporary freeze pending investigation",
+    "critique": "This assessment is limited by the absence of specific transaction details, account age, and the actual values of the SHAP features (e.g., the number of months for address history), which would provide more granular context for the fraud typology.",
+    "refined_assessment": "The account was flagged primarily due to a significant contribution from the device operating system being Windows, a specific payment type (AC), and a higher credit risk score. A longer current address history also contributed to the elevated fraud probability, suggesting potential misuse of an established identity or account.. Regulatory considerations: ACH Fraud; Mule Account Fraud; SAR Requirements (BSA/AML).",
+    "retrieval_passes": 1
+  },
+  "rule_based_decision": "FREEZE",
+  "rule_based_reason": "HIGH risk tier with fraud probability 0.941 >= 0.90 threshold \u2014 immediate account freeze pending manual review.",
+  "final_decision": "FREEZE"
+}

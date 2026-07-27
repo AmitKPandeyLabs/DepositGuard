@@ -1,0 +1,23 @@
+{
+  "account_id": 937076,
+  "generated_at": "2026-07-19T19:09:19.454373+00:00",
+  "risk_tier": "HIGH",
+  "fraud_probability": 0.9141803,
+  "investigation": {
+    "root_cause": "This account was flagged due to a combination of a short address history (low current_address_months_count), a risky credit profile (credit_risk_score), and the use of a specific device operating system (device_os_windows), all contributing significantly to the high fraud probability.",
+    "confidence": "Very High (91.42%)",
+    "regulatory_flags": [
+      "Suspicious Activity Report (SAR) Requirements",
+      "Mule Account Detection Obligations"
+    ],
+    "ai_recommended_action": "Immediate account review \u2014 consider temporary freeze pending investigation",
+    "analyst_question": "Can you confirm the device used during account opening matches the applicant's stated location?",
+    "initial_assessment": "This account was flagged due to a combination of a short address history (low current_address_months_count), a risky credit profile (credit_risk_score), and the use of a specific device operating system (device_os_windows), all contributing significantly to the high fraud probability.. Confidence: Very High (91.42%). This account's fraud probability (0.9142) is higher than 99.9% of the 10,000-account scored sample. Recommended action: Immediate account review \u2014 consider temporary freeze pending investigation",
+    "critique": "This assessment is limited by the absence of specific transactional data, identity verification results, or the actual values of the risk-driving features, which would be crucial for a comprehensive fraud investigation.",
+    "refined_assessment": "This account was flagged due to a combination of a short address history (low current_address_months_count), a risky credit profile (credit_risk_score), and the use of a specific device operating system (device_os_windows), all contributing significantly to the high fraud probability.. Regulatory considerations: Suspicious Activity Report (SAR) Requirements; Mule Account Detection Obligations.",
+    "retrieval_passes": 1
+  },
+  "rule_based_decision": "FREEZE",
+  "rule_based_reason": "HIGH risk tier with fraud probability 0.914 >= 0.90 threshold \u2014 immediate account freeze pending manual review.",
+  "final_decision": "FREEZE"
+}

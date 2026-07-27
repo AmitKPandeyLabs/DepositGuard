@@ -1,0 +1,23 @@
+{
+  "account_id": 907126,
+  "generated_at": "2026-07-19T19:08:24.156799+00:00",
+  "risk_tier": "HIGH",
+  "fraud_probability": 0.9331451,
+  "investigation": {
+    "root_cause": "The account was flagged as high risk primarily due to a high proposed credit limit and a short address history, both strong indicators of new account fraud. The use of a Macintosh operating system and payment type AC also contributed to the elevated fraud probability.",
+    "confidence": "High (93.31%)",
+    "regulatory_flags": [
+      "New Account Fraud",
+      "SAR Filing Obligation"
+    ],
+    "ai_recommended_action": "Immediate account review \u2014 consider temporary freeze pending investigation",
+    "analyst_question": "Can you confirm the device used during account opening matches the applicant's stated location?",
+    "initial_assessment": "The account was flagged as high risk primarily due to a high proposed credit limit and a short address history, both strong indicators of new account fraud. The use of a Macintosh operating system and payment type AC also contributed to the elevated fraud probability.. Confidence: High (93.31%). This account's fraud probability (0.9331) is higher than 100.0% of the 10,000-account scored sample. Recommended action: Immediate account review \u2014 consider temporary freeze pending investigation",
+    "critique": "The assessment is limited by the absence of specific feature values (e.g., the exact proposed credit limit or address tenure) which would allow for a more granular comparison against regulatory thresholds or typical fraud patterns. Additionally, the model's reliance on device OS features (device_os_macintosh) as significant drivers, while noted, does not directly map to specific behavioral signals in the provided fraud typologies, suggesting potential gaps in the typology definitions or the need for further investigation into device-related fraud patterns.",
+    "refined_assessment": "The account was flagged as high risk primarily due to a high proposed credit limit and a short address history, both strong indicators of new account fraud. The use of a Macintosh operating system and payment type AC also contributed to the elevated fraud probability.. Regulatory considerations: New Account Fraud; SAR Filing Obligation.",
+    "retrieval_passes": 1
+  },
+  "rule_based_decision": "FREEZE",
+  "rule_based_reason": "HIGH risk tier with fraud probability 0.933 >= 0.90 threshold \u2014 immediate account freeze pending manual review.",
+  "final_decision": "FREEZE"
+}

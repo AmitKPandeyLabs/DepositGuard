@@ -1,0 +1,23 @@
+{
+  "account_id": 901801,
+  "generated_at": "2026-07-19T19:09:55.744916+00:00",
+  "risk_tier": "HIGH",
+  "fraud_probability": 0.911089,
+  "investigation": {
+    "root_cause": "This account was flagged due to a combination of high-risk SHAP features, including the use of a Windows device, a short address history, and a low name-to-email similarity, which are indicative of potential new account fraud. The presence of these features suggests that the account may have been opened with a stolen, synthetic, or fabricated identity.",
+    "confidence": "Very High (91.11%)",
+    "regulatory_flags": [
+      "New Account Fraud",
+      "Mule Account Fraud"
+    ],
+    "ai_recommended_action": "Immediate account review \u2014 consider temporary freeze pending investigation",
+    "analyst_question": "Can you confirm the device used during account opening matches the applicant's stated location?",
+    "initial_assessment": "This account was flagged due to a combination of high-risk SHAP features, including the use of a Windows device, a short address history, and a low name-to-email similarity, which are indicative of potential new account fraud. The presence of these features suggests that the account may have been opened with a stolen, synthetic, or fabricated identity.. Confidence: Very High (91.11%). This account's fraud probability (0.9111) is higher than 99.9% of the 10,000-account scored sample. Recommended action: Immediate account review \u2014 consider temporary freeze pending investigation",
+    "critique": "This assessment is limited by its reliance on behavioral signals from the SHAP features, without considering additional contextual information, such as transaction history or customer interactions, which could provide a more comprehensive understanding of the account's risk profile. Furthermore, the model's focus on new account fraud and mule account fraud may overlook other potential fraud typologies that are not captured by the provided SHAP features.",
+    "refined_assessment": "This account was flagged due to a combination of high-risk SHAP features, including the use of a Windows device, a short address history, and a low name-to-email similarity, which are indicative of potential new account fraud. The presence of these features suggests that the account may have been opened with a stolen, synthetic, or fabricated identity.. Regulatory considerations: New Account Fraud; Mule Account Fraud.",
+    "retrieval_passes": 1
+  },
+  "rule_based_decision": "FREEZE",
+  "rule_based_reason": "HIGH risk tier with fraud probability 0.911 >= 0.90 threshold \u2014 immediate account freeze pending manual review.",
+  "final_decision": "FREEZE"
+}

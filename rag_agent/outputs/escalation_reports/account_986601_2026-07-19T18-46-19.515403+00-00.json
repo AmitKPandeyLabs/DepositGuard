@@ -1,0 +1,24 @@
+{
+  "account_id": 986601,
+  "generated_at": "2026-07-19T18:46:19.515403+00:00",
+  "risk_tier": "HIGH",
+  "fraud_probability": 0.88574845,
+  "investigation": {
+    "root_cause": "This account was flagged primarily due to a strong positive contribution from `device_os_windows` and `date_of_birth_distinct_emails_4w`, suggesting potential identity manipulation or coordinated activity across multiple accounts. The `payment_type_AB` also contributed positively to the elevated fraud probability.",
+    "confidence": "High (88.57%)",
+    "regulatory_flags": [
+      "New Account Fraud",
+      "Mule Account Fraud",
+      "SAR Requirements"
+    ],
+    "ai_recommended_action": "Immediate account review \u2014 consider temporary freeze pending investigation",
+    "analyst_question": "Can you confirm the device used during account opening matches the applicant's stated location?",
+    "initial_assessment": "This account was flagged primarily due to a strong positive contribution from `device_os_windows` and `date_of_birth_distinct_emails_4w`, suggesting potential identity manipulation or coordinated activity across multiple accounts. The `payment_type_AB` also contributed positively to the elevated fraud probability.. Confidence: High (88.57%). This account's fraud probability (0.8857) is higher than 99.9% of the 10,000-account scored sample. Recommended action: Immediate account review \u2014 consider temporary freeze pending investigation",
+    "critique": "This assessment is limited by the absence of specific transaction details, account history, or customer profile information, which would provide crucial context beyond the model's behavioral signals. The precise definitions and thresholds for the SHAP features (e.g., `device_os_windows`, `date_of_birth_distinct_emails_4w`) are also not available for deeper analysis.",
+    "refined_assessment": "This account was flagged primarily due to a strong positive contribution from `device_os_windows` and `date_of_birth_distinct_emails_4w`, suggesting potential identity manipulation or coordinated activity across multiple accounts. The `payment_type_AB` also contributed positively to the elevated fraud probability.. Regulatory considerations: New Account Fraud; Mule Account Fraud; SAR Requirements.",
+    "retrieval_passes": 1
+  },
+  "rule_based_decision": "ESCALATE",
+  "rule_based_reason": "HIGH risk tier (fraud probability 0.886) \u2014 escalate to fraud investigation team.",
+  "final_decision": "ESCALATE"
+}

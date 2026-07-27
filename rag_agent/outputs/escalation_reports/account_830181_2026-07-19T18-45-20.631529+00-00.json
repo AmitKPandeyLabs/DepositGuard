@@ -1,0 +1,23 @@
+{
+  "account_id": 830181,
+  "generated_at": "2026-07-19T18:45:20.631529+00:00",
+  "risk_tier": "HIGH",
+  "fraud_probability": 0.8177829,
+  "investigation": {
+    "root_cause": "The account was flagged primarily due to a high-risk Windows operating system, the presence of a specific payment type (AC), elevated email risk, and the use of the same date of birth with multiple distinct emails within a four-week period.",
+    "confidence": "High (81.78%)",
+    "regulatory_flags": [
+      "SAR",
+      "BSA/AML"
+    ],
+    "ai_recommended_action": "Immediate account review \u2014 consider temporary freeze pending investigation",
+    "analyst_question": "Can you confirm the device used during account opening matches the applicant's stated location?",
+    "initial_assessment": "The account was flagged primarily due to a high-risk Windows operating system, the presence of a specific payment type (AC), elevated email risk, and the use of the same date of birth with multiple distinct emails within a four-week period.. Confidence: High (81.78%). This account's fraud probability (0.8178) is higher than 99.7% of the 10,000-account scored sample. Recommended action: Immediate account review \u2014 consider temporary freeze pending investigation",
+    "critique": "This assessment is limited by relying solely on model-derived SHAP features, which do not provide full behavioral context such as transaction patterns or specific details of device sharing. The counter-intuitive negative contribution of 'email_is_free' also warrants further investigation into its specific context for this account.",
+    "refined_assessment": "The account was flagged primarily due to a high-risk Windows operating system, the presence of a specific payment type (AC), elevated email risk, and the use of the same date of birth with multiple distinct emails within a four-week period.. Regulatory considerations: SAR; BSA/AML.",
+    "retrieval_passes": 1
+  },
+  "rule_based_decision": "ESCALATE",
+  "rule_based_reason": "HIGH risk tier (fraud probability 0.818) \u2014 escalate to fraud investigation team.",
+  "final_decision": "ESCALATE"
+}

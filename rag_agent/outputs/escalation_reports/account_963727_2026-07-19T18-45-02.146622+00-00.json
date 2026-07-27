@@ -1,0 +1,23 @@
+{
+  "account_id": 963727,
+  "generated_at": "2026-07-19T18:45:02.146622+00:00",
+  "risk_tier": "HIGH",
+  "fraud_probability": 0.8518152,
+  "investigation": {
+    "root_cause": "The account was flagged primarily due to the device operating system being Windows, a high proposed credit limit, and a high credit risk score, with payment type AB also contributing significantly to the elevated fraud probability.",
+    "confidence": "Very High (85.18%)",
+    "regulatory_flags": [
+      "New Account Fraud",
+      "Suspicious Activity Report (SAR) Requirements"
+    ],
+    "ai_recommended_action": "Immediate account review \u2014 consider temporary freeze pending investigation",
+    "analyst_question": "Can you confirm the device used during account opening matches the applicant's stated location?",
+    "initial_assessment": "The account was flagged primarily due to the device operating system being Windows, a high proposed credit limit, and a high credit risk score, with payment type AB also contributing significantly to the elevated fraud probability.. Confidence: Very High (85.18%). This account's fraud probability (0.8518) is higher than 99.8% of the 10,000-account scored sample. Recommended action: Immediate account review \u2014 consider temporary freeze pending investigation",
+    "critique": "This assessment is limited to the provided SHAP features and lacks broader behavioral signals such as transaction history, email characteristics, or address tenure, which could further confirm or refute the identified fraud typologies.",
+    "refined_assessment": "The account was flagged primarily due to the device operating system being Windows, a high proposed credit limit, and a high credit risk score, with payment type AB also contributing significantly to the elevated fraud probability.. Regulatory considerations: New Account Fraud; Suspicious Activity Report (SAR) Requirements.",
+    "retrieval_passes": 1
+  },
+  "rule_based_decision": "ESCALATE",
+  "rule_based_reason": "HIGH risk tier (fraud probability 0.852) \u2014 escalate to fraud investigation team.",
+  "final_decision": "ESCALATE"
+}

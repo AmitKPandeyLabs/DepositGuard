@@ -1,0 +1,23 @@
+{
+  "account_id": 942453,
+  "generated_at": "2026-07-19T19:09:09.017794+00:00",
+  "risk_tier": "HIGH",
+  "fraud_probability": 0.92259926,
+  "investigation": {
+    "root_cause": "The account was flagged primarily due to a high positive contribution from the proposed credit limit and the credit risk score, suggesting a request disproportionate to the applicant's risk profile, consistent with new account fraud. The device operating system being Macintosh also positively contributed to the fraud probability.",
+    "confidence": "Very High (92.26%)",
+    "regulatory_flags": [
+      "NEW ACCOUNT FRAUD",
+      "SAR REQUIREMENTS"
+    ],
+    "ai_recommended_action": "Immediate account review \u2014 consider temporary freeze pending investigation",
+    "analyst_question": "Can you confirm the device used during account opening matches the applicant's stated location?",
+    "initial_assessment": "The account was flagged primarily due to a high positive contribution from the proposed credit limit and the credit risk score, suggesting a request disproportionate to the applicant's risk profile, consistent with new account fraud. The device operating system being Macintosh also positively contributed to the fraud probability.. Confidence: Very High (92.26%). This account's fraud probability (0.9226) is higher than 99.9% of the 10,000-account scored sample. Recommended action: Immediate account review \u2014 consider temporary freeze pending investigation",
+    "critique": "This assessment is limited by the absence of specific feature values (e.g., the actual credit risk score or proposed credit limit amount), which would allow for a more precise evaluation of proportionality and direct mapping to behavioral signals. Further investigation would require reviewing the full account application and transaction history.",
+    "refined_assessment": "The account was flagged primarily due to a high positive contribution from the proposed credit limit and the credit risk score, suggesting a request disproportionate to the applicant's risk profile, consistent with new account fraud. The device operating system being Macintosh also positively contributed to the fraud probability.. Regulatory considerations: NEW ACCOUNT FRAUD; SAR REQUIREMENTS.",
+    "retrieval_passes": 1
+  },
+  "rule_based_decision": "FREEZE",
+  "rule_based_reason": "HIGH risk tier with fraud probability 0.923 >= 0.90 threshold \u2014 immediate account freeze pending manual review.",
+  "final_decision": "FREEZE"
+}

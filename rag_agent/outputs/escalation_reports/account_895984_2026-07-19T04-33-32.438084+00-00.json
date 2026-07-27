@@ -1,0 +1,24 @@
+{
+  "account_id": 895984,
+  "generated_at": "2026-07-19T04:33:32.438084+00:00",
+  "risk_tier": "HIGH",
+  "fraud_probability": 0.78341514,
+  "investigation": {
+    "root_cause": "Account flagged primarily due to: device_os_windows (+1.04), email_is_free (-1.03), credit_risk_score (+0.53)",
+    "confidence": "High (78%)",
+    "regulatory_flags": [
+      "Reg E \u2014 unauthorized transfer investigation required",
+      "BSA \u2014 evaluate for SAR filing",
+      "New Account Fraud \u2014 enhanced due diligence"
+    ],
+    "ai_recommended_action": "Immediate account review \u2014 consider temporary freeze pending investigation",
+    "analyst_question": "Can you confirm the device used during account opening matches the applicant's stated location?",
+    "initial_assessment": "Account flagged primarily due to: device_os_windows (+1.04), email_is_free (-1.03), credit_risk_score (+0.53). Confidence: High (78%). This account's fraud probability (0.7834) is higher than 99.6% of the 10,000-account scored sample. Recommended action: Immediate account review \u2014 consider temporary freeze pending investigation",
+    "critique": "Assessment based on behavioral signals only \u2014 identity verification documents not reviewed",
+    "refined_assessment": "Account flagged primarily due to: device_os_windows (+1.04), email_is_free (-1.03), credit_risk_score (+0.53). Regulatory considerations: Reg E \u2014 unauthorized transfer investigation required; BSA \u2014 evaluate for SAR filing; New Account Fraud \u2014 enhanced due diligence.",
+    "retrieval_passes": 2
+  },
+  "rule_based_decision": "ESCALATE",
+  "rule_based_reason": "HIGH risk tier (fraud probability 0.783) \u2014 escalate to fraud investigation team.",
+  "final_decision": "ESCALATE"
+}

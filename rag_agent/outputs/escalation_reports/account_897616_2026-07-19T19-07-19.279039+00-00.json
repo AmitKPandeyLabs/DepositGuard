@@ -1,0 +1,24 @@
+{
+  "account_id": 897616,
+  "generated_at": "2026-07-19T19:07:19.279039+00:00",
+  "risk_tier": "HIGH",
+  "fraud_probability": 0.98620856,
+  "investigation": {
+    "root_cause": "The account was flagged as high-risk primarily due to the strong positive contribution from the device's operating system (Windows), a high proposed credit limit, a poor credit risk score, and elevated transaction velocity over four weeks.",
+    "confidence": "Extremely High (98.62%)",
+    "regulatory_flags": [
+      "New Account Fraud",
+      "Mule Account Fraud",
+      "Suspicious Activity Report (SAR) Filing Obligation"
+    ],
+    "ai_recommended_action": "Immediate account review \u2014 consider temporary freeze pending investigation",
+    "analyst_question": "Can you confirm the device used during account opening matches the applicant's stated location?",
+    "initial_assessment": "The account was flagged as high-risk primarily due to the strong positive contribution from the device's operating system (Windows), a high proposed credit limit, a poor credit risk score, and elevated transaction velocity over four weeks.. Confidence: Extremely High (98.62%). This account's fraud probability (0.9862) is higher than 100.0% of the 10,000-account scored sample. Recommended action: Immediate account review \u2014 consider temporary freeze pending investigation",
+    "critique": "This assessment is based solely on model-derived SHAP features and general typology definitions. It lacks specific account details (e.g., actual credit limit requested, specific transaction types contributing to velocity, or full device fingerprint details) that would allow for a more granular confirmation of the fraud typology and the specific nature of the device risk.",
+    "refined_assessment": "The account was flagged as high-risk primarily due to the strong positive contribution from the device's operating system (Windows), a high proposed credit limit, a poor credit risk score, and elevated transaction velocity over four weeks.. Regulatory considerations: New Account Fraud; Mule Account Fraud; Suspicious Activity Report (SAR) Filing Obligation.",
+    "retrieval_passes": 1
+  },
+  "rule_based_decision": "FREEZE",
+  "rule_based_reason": "HIGH risk tier with fraud probability 0.986 >= 0.90 threshold \u2014 immediate account freeze pending manual review.",
+  "final_decision": "FREEZE"
+}

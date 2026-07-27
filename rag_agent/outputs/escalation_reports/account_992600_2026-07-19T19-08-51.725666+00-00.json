@@ -1,0 +1,22 @@
+{
+  "account_id": 992600,
+  "generated_at": "2026-07-19T19:08:51.725666+00:00",
+  "risk_tier": "HIGH",
+  "fraud_probability": 0.9278019,
+  "investigation": {
+    "root_cause": "The account was flagged due to strong indicators of new account fraud, including a rapid application submission and short address history (rapid_application, current_address_months_count), combined with high transaction velocity (velocity_4w) and the use of ACH payment types (payment_type_AC). The device operating system (device_os_windows) also significantly contributed to the risk.",
+    "confidence": "Very High (92.78%)",
+    "regulatory_flags": [
+      "Suspicious Activity Report (SAR) Filing Obligation"
+    ],
+    "ai_recommended_action": "Immediate account review \u2014 consider temporary freeze pending investigation",
+    "analyst_question": "Can you confirm the device used during account opening matches the applicant's stated location?",
+    "initial_assessment": "The account was flagged due to strong indicators of new account fraud, including a rapid application submission and short address history (rapid_application, current_address_months_count), combined with high transaction velocity (velocity_4w) and the use of ACH payment types (payment_type_AC). The device operating system (device_os_windows) also significantly contributed to the risk.. Confidence: Very High (92.78%). This account's fraud probability (0.9278) is higher than 99.9% of the 10,000-account scored sample. Recommended action: Immediate account review \u2014 consider temporary freeze pending investigation",
+    "critique": "This assessment is limited by the absence of specific transaction details (e.g., amounts, counterparties, specific ACH return codes) and customer profile information, which would provide crucial context for the identified risk drivers.",
+    "refined_assessment": "The account was flagged due to strong indicators of new account fraud, including a rapid application submission and short address history (rapid_application, current_address_months_count), combined with high transaction velocity (velocity_4w) and the use of ACH payment types (payment_type_AC). The device operating system (device_os_windows) also significantly contributed to the risk.. Regulatory considerations: Suspicious Activity Report (SAR) Filing Obligation.",
+    "retrieval_passes": 1
+  },
+  "rule_based_decision": "FREEZE",
+  "rule_based_reason": "HIGH risk tier with fraud probability 0.928 >= 0.90 threshold \u2014 immediate account freeze pending manual review.",
+  "final_decision": "FREEZE"
+}

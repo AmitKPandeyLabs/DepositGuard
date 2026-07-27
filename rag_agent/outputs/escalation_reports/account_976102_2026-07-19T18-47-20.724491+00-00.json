@@ -1,0 +1,23 @@
+{
+  "account_id": 976102,
+  "generated_at": "2026-07-19T18:47:20.724491+00:00",
+  "risk_tier": "HIGH",
+  "fraud_probability": 0.78438896,
+  "investigation": {
+    "root_cause": "This account was flagged as high risk primarily due to a strong positive contribution from the device's operating system being Windows, a specific payment type (AB), and the current address tenure.",
+    "confidence": "High (78.44%)",
+    "regulatory_flags": [
+      "SAR filing requirements under the Bank Secrecy Act (BSA) for potential money laundering or mule account activity, as indicated by the alignment of risk drivers with New Account Fraud and Mule Account Fraud typologies.",
+      "Regulation E (Reg E) for potential unauthorized transfers, particularly if the device_os_windows risk driver suggests a compromised access device used for illicit activity."
+    ],
+    "ai_recommended_action": "Immediate account review \u2014 consider temporary freeze pending investigation",
+    "analyst_question": "Can you confirm the device used during account opening matches the applicant's stated location?",
+    "initial_assessment": "This account was flagged as high risk primarily due to a strong positive contribution from the device's operating system being Windows, a specific payment type (AB), and the current address tenure.. Confidence: High (78.44%). This account's fraud probability (0.7844) is higher than 99.6% of the 10,000-account scored sample. Recommended action: Immediate account review \u2014 consider temporary freeze pending investigation",
+    "critique": "This assessment is limited by the absence of specific transaction details or a comprehensive view of the customer's full account activity, which would be crucial to confirm the fraud typology and specific regulatory obligations.",
+    "refined_assessment": "This account was flagged as high risk primarily due to a strong positive contribution from the device's operating system being Windows, a specific payment type (AB), and the current address tenure.. Regulatory considerations: SAR filing requirements under the Bank Secrecy Act (BSA) for potential money laundering or mule account activity, as indicated by the alignment of risk drivers with New Account Fraud and Mule Account Fraud typologies.; Regulation E (Reg E) for potential unauthorized transfers, particularly if the device_os_windows risk driver suggests a compromised access device used for illicit activity..",
+    "retrieval_passes": 2
+  },
+  "rule_based_decision": "ESCALATE",
+  "rule_based_reason": "HIGH risk tier (fraud probability 0.784) \u2014 escalate to fraud investigation team.",
+  "final_decision": "ESCALATE"
+}

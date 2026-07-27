@@ -1,0 +1,24 @@
+{
+  "account_id": 824858,
+  "generated_at": "2026-07-19T18:45:41.580253+00:00",
+  "risk_tier": "HIGH",
+  "fraud_probability": 0.7566771,
+  "investigation": {
+    "root_cause": "This account was flagged due to the strong influence of a Windows operating system being used, an ACH payment type, multiple distinct emails associated with the device in the last 8 weeks, and the use of a free email provider.",
+    "confidence": "High (75.67%)",
+    "regulatory_flags": [
+      "Regulation E",
+      "NACHA Operating Rules",
+      "BSA/AML (SAR)"
+    ],
+    "ai_recommended_action": "Immediate account review \u2014 consider temporary freeze pending investigation",
+    "analyst_question": "Can you confirm the device used during account opening matches the applicant's stated location?",
+    "initial_assessment": "This account was flagged due to the strong influence of a Windows operating system being used, an ACH payment type, multiple distinct emails associated with the device in the last 8 weeks, and the use of a free email provider.. Confidence: High (75.67%). This account's fraud probability (0.7567) is higher than 99.5% of the 10,000-account scored sample. Recommended action: Immediate account review \u2014 consider temporary freeze pending investigation",
+    "critique": "This assessment is based on predictive model features and lacks specific transaction details, account history, or identity verification results that would confirm the fraud typology.",
+    "refined_assessment": "This account was flagged due to the strong influence of a Windows operating system being used, an ACH payment type, multiple distinct emails associated with the device in the last 8 weeks, and the use of a free email provider.. Regulatory considerations: Regulation E; NACHA Operating Rules; BSA/AML (SAR).",
+    "retrieval_passes": 2
+  },
+  "rule_based_decision": "ESCALATE",
+  "rule_based_reason": "HIGH risk tier (fraud probability 0.757) \u2014 escalate to fraud investigation team.",
+  "final_decision": "ESCALATE"
+}

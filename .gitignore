@@ -4,12 +4,14 @@ data/
 # Secrets
 .env
 
-# Outputs
-outputs/*.csv
+# Outputs (large / regenerable — dashboard-required outputs/scored_accounts.csv
+# and outputs/model_comparison.csv are intentionally NOT excluded here)
+outputs/featured_data.csv
 
 # RAG agent generated data
 rag_agent/chroma_db/
-rag_agent/outputs/
+rag_agent/outputs/*
+!rag_agent/outputs/escalation_reports/
 
 # Python
 __pycache__/
