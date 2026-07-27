@@ -13,7 +13,7 @@ OUTPUTS_DIR = os.path.join(BASE_DIR, "outputs")
 SCORED_ACCOUNTS_PATH = os.path.join(OUTPUTS_DIR, "scored_accounts.csv")
 MODEL_COMPARISON_PATH = os.path.join(OUTPUTS_DIR, "model_comparison.csv")
 FEATURE_IMPORTANCE_IMG = os.path.join(OUTPUTS_DIR, "feature_importance.png")
-FEATURED_DATA_PATH = os.path.join(OUTPUTS_DIR, "featured_data.csv")
+FEATURED_DATA_SAMPLE_PATH = os.path.join(OUTPUTS_DIR, "featured_data_sample.csv")
 ESCALATION_REPORTS_DIR = os.path.join(BASE_DIR, "rag_agent", "outputs", "escalation_reports")
 
 RISK_COLORS = {"HIGH": "#ff6b6b", "MEDIUM": "#ffd93d", "LOW": "#4ecdc4"}
@@ -105,7 +105,7 @@ def load_model_comparison():
 def load_featured_columns(columns):
     scored = load_scored_accounts()
     account_ids = scored["account_index"].tolist()
-    df = pd.read_csv(FEATURED_DATA_PATH, usecols=list(columns))
+    df = pd.read_csv(FEATURED_DATA_SAMPLE_PATH, usecols=["account_index", *columns]).set_index("account_index")
     return df.loc[account_ids]
 
 
@@ -137,6 +137,8 @@ def find_escalation_reports(account_id):
 def missing_file_notice(path, label):
     st.warning(f"**{label}** not found at `{os.path.relpath(path, BASE_DIR)}`. Run the corresponding notebook/script to generate it.")
 
+
+DEFAULT_CASE_REVIEW_ACCOUNT = 897616
 
 FEATURE_BIN_OPTIONS = {
     "Credit Risk Score": "credit_risk_score",
@@ -449,7 +451,12 @@ def page_case_review():
     if not high_risk_ids:
         st.info("No HIGH risk accounts found in scored_accounts.csv.")
     else:
-        account_id = st.selectbox("Select a HIGH risk account", high_risk_ids)
+        default_index = (
+            high_risk_ids.index(DEFAULT_CASE_REVIEW_ACCOUNT)
+            if DEFAULT_CASE_REVIEW_ACCOUNT in high_risk_ids
+            else 0
+        )
+        account_id = st.selectbox("Select a HIGH risk account", high_risk_ids, index=default_index)
         row = df.loc[df["account_index"] == account_id].iloc[0]
 
         c1, c2, c3 = st.columns(3)
@@ -518,7 +525,7 @@ def page_case_review():
     st.divider()
 
     st.subheader("Fraud Probability by Feature Bin")
-    if os.path.exists(FEATURED_DATA_PATH):
+    if os.path.exists(FEATURED_DATA_SAMPLE_PATH):
         feature_label = st.selectbox("Bin by feature", list(FEATURE_BIN_OPTIONS.keys()))
         feature_col = FEATURE_BIN_OPTIONS[feature_label]
 
@@ -541,7 +548,7 @@ def page_case_review():
         fig3.update_layout(margin=dict(t=20, b=20))
         st.plotly_chart(fig3, width="stretch")
     else:
-        missing_file_notice(FEATURED_DATA_PATH, "outputs/featured_data.csv")
+        missing_file_notice(FEATURED_DATA_SAMPLE_PATH, "outputs/featured_data_sample.csv")
 
     st.subheader("Distribution of Fraud Probabilities")
     fig4 = go.Figure()
