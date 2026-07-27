@@ -38,7 +38,7 @@ DepositGuard is an end-to-end deposit account fraud detection system: it enginee
 
 ## Project Overview & Business Problem
 
-Deposit account fraud - new account fraud, ACH fraud, mule accounts, check fraud - costs U.S. banks billions of dollars annually. Most institutions still lean on legacy, rules-based detection: static SQL/Oracle trigger logic that fires on known patterns but misses novel combinations of behavioral signals, backed by manual analyst investigation against dense regulatory text (Reg E, NACHA, BSA/AML). That combination is slow, inconsistent across analysts, and hard to audit at scale.
+Deposit account fraud such as new account fraud, ACH fraud, mule accounts, check fraud etc costs U.S. banks billions of dollars annually. Most institutions still lean on legacy, rules-based detection: static SQL/Oracle trigger logic that fires on known patterns but misses novel combinations of behavioral signals, backed by manual analyst investigation against dense regulatory text (Reg E, NACHA, BSA/AML). That combination is slow, inconsistent across analysts, and hard to audit at scale.
 
 This project targets six concrete goals:
 
