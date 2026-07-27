@@ -138,8 +138,6 @@ def missing_file_notice(path, label):
     st.warning(f"**{label}** not found at `{os.path.relpath(path, BASE_DIR)}`. Run the corresponding notebook/script to generate it.")
 
 
-DEFAULT_CASE_REVIEW_ACCOUNT = 897616
-
 FEATURE_BIN_OPTIONS = {
     "Credit Risk Score": "credit_risk_score",
     "Customer Age": "customer_age",
@@ -194,9 +192,17 @@ def render_mini_shap_importance(top_n=5, height=220):
     st.plotly_chart(fig, width="stretch")
 
 
-def render_top_high_risk_table(n=3):
+def get_sorted_high_risk_accounts():
+    """HIGH-risk accounts sorted by fraud_probability descending — the single source of
+    truth for "top risk" ordering, shared by the dashboard's top-accounts panel and the
+    Case review page's default account selection.
+    """
     df = load_scored_accounts()
-    top = df[df["risk_tier"] == "HIGH"].sort_values("fraud_probability", ascending=False).head(n)
+    return df[df["risk_tier"] == "HIGH"].sort_values("fraud_probability", ascending=False)
+
+
+def render_top_high_risk_table(n=3):
+    top = get_sorted_high_risk_accounts().head(n)
 
     if top.empty:
         st.info("No HIGH risk accounts found.")
@@ -438,6 +444,18 @@ def page_model_insights():
 # Page 3 - Case Review (Fraud Investigation + Fraud Trend Analysis)
 # --------------------------------------------------------------------------------------
 
+def resolve_default_case_review_account():
+    """The #1 highest-fraud_probability HIGH-risk account (same ordering as the dashboard's
+    top-accounts panel) — falling back to the next-highest account that actually has a
+    generated escalation report if the true #1 doesn't have one.
+    """
+    ranked_ids = get_sorted_high_risk_accounts()["account_index"].tolist()
+    for account_id in ranked_ids:
+        if find_escalation_reports(account_id):
+            return account_id
+    return ranked_ids[0] if ranked_ids else None
+
+
 def page_case_review():
     st.header("Case Review")
 
@@ -451,9 +469,10 @@ def page_case_review():
     if not high_risk_ids:
         st.info("No HIGH risk accounts found in scored_accounts.csv.")
     else:
+        default_account = resolve_default_case_review_account()
         default_index = (
-            high_risk_ids.index(DEFAULT_CASE_REVIEW_ACCOUNT)
-            if DEFAULT_CASE_REVIEW_ACCOUNT in high_risk_ids
+            high_risk_ids.index(default_account)
+            if default_account in high_risk_ids
             else 0
         )
         account_id = st.selectbox("Select a HIGH risk account", high_risk_ids, index=default_index)
