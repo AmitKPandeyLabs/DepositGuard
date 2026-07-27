@@ -163,7 +163,7 @@ Sample accounts from real generated escalation reports:
 | 986601 | 0.8857 | HIGH | ESCALATE |
 
 ## Streamlit Dashboard
-**Live app:** [depositguard.streamlit.app](https://depositguard.streamlit.app/)
+**Live app:** <a href="https://depositguard.streamlit.app/" target="_blank" rel="noopener noreferrer">depositguard.streamlit.app</a>
 
 The full system is served as a three-page live dashboard:
 
