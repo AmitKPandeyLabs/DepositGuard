@@ -1,5 +1,7 @@
 # DepositGuard
 
+<p align="center"><img src="assets/DepositGuard_Cover.png" width="700" alt="DepositGuard — Bank Account Fraud Detection System"></p>
+
 <p align="left">
   <img src="https://img.shields.io/badge/Python-3.11%2B-blue.svg?style=for-the-badge&logo=python&logoColor=white" alt="Python Version">
   <img src="https://img.shields.io/badge/XGBoost-3.2-green.svg?style=for-the-badge&logo=xgboost&logoColor=white" alt="XGBoost">
@@ -130,6 +132,13 @@ Top SHAP-ranked features driving individual risk scores (`notebooks/04_risk_scor
 
 HIGH-risk accounts (fraud probability ≥ 0.75) don't stop at a risk score — they flow into a three-node LangGraph pipeline (`rag_agent/agents.py`) that investigates and then deterministically decides what happens to the account:
 
+<p align="center">
+  <a href="assets/DepositGuard_Architecture_Animated.mp4">
+    <img src="assets/DepositGuard_Architecture.png" width="750" alt="DepositGuard system architecture — data pipeline, RAG agent, and dashboard">
+  </a>
+</p>
+<p align="center"><em>GitHub doesn't autoplay video in READMEs — click the diagram above to watch the animated version (assets/DepositGuard_Architecture_Animated.mp4).</em></p>
+
 1. **Triage** — reads each account's precomputed fraud probability and SHAP profile from `scored_accounts.csv` and routes by fixed risk-tier thresholds: HIGH → Investigation, MEDIUM → flagged for manual review, LOW → auto-cleared. No LLM involved.
 2. **Investigation** — retrieves relevant regulatory/fraud-typology text from a ChromaDB knowledge base (Reg E, NACHA return codes, BSA/AML overview, and fraud-type definitions, chunked and embedded from `rag_agent/fraud_kb/`), then asks an LLM to reason over the account's real top-5 SHAP features plus that retrieved context — **Google Gemini first, Groq (Llama 3.3 70B) as automatic fallback** on any Gemini failure. The LLM is constrained to return only `confidence`, `root_cause`, `regulatory_flags`, and a self-`critique`, each grounded explicitly in the SHAP features and retrieved text provided — it cannot invent a feature or cite a regulation not present in the retrieved context. If the returned confidence score falls below 0.80, the conditional edge routes back into Investigation for a second, broadened retrieval pass (capped at 2 passes total) before proceeding.
 3. **Escalation** — applies a fixed, deterministic rule (`rag_agent/tools.py::make_escalation_decision`) over the account's risk tier, fraud probability, and any regulatory flags raised: HIGH risk with probability ≥ 0.90 → **FREEZE**; HIGH risk otherwise → **ESCALATE**; MEDIUM risk with regulatory flags → **ESCALATE**; MEDIUM with none → **MONITOR**; otherwise → **CLEAR**. This decision is never made by the LLM — it's a plain conditional over numbers and flags, which is what makes the final action auditable. The full report (investigation findings + rule-based decision + reasoning) is written to `rag_agent/outputs/escalation_reports/` as JSON and logged to a ChromaDB episodic-memory collection for future retrieval.
@@ -155,8 +164,18 @@ Sample accounts from real generated escalation reports:
 The full system is served as a three-page live dashboard (`app.py`):
 
 - **Fraud dashboard** — portfolio-level metrics (accounts scored, predicted HIGH-risk rate, risk-tier breakdown), a risk-tier distribution donut, model comparison chart, fraud-probability distribution, and top-5 SHAP features / top-5 highest-risk accounts at a glance.
+
+  <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard1.png" width="850" alt="Fraud dashboard page"></p>
+
 - **Model insights** — the full 4-model comparison (AUC-ROC / Precision / Recall / F1 / FPR) with the winning model highlighted, the SHAP feature-importance chart, and a recomputed top-10 SHAP breakdown as a cross-check.
+
+  <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard2.png" width="850" alt="Model insights page — model comparison chart"></p>
+  <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard3.png" width="850" alt="Model insights page — SHAP feature importance and signal breakdown"></p>
+
 - **Case review** — pick any HIGH-risk account to see its top-5 SHAP drivers, its full LangGraph escalation report (confidence, root cause, regulatory flags, analyst question, self-critique, final decision), and fraud-probability trends binned by feature.
+
+  <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard4.png" width="850" alt="Case review page — account SHAP drivers and escalation report"></p>
+  <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard5.png" width="850" alt="Case review page — fraud probability by feature bin and distribution"></p>
 
 **Live app:** [depositguard.streamlit.app](https://depositguard.streamlit.app/)
 
