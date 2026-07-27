@@ -134,7 +134,7 @@ HIGH-risk accounts (fraud probability ≥ 0.75) don't stop at a risk score — t
 
 <p align="center">
   <a href="assets/DepositGuard_Architecture_Animated.mp4">
-    <img src="assets/DepositGuard_Architecture.png" width="750" alt="DepositGuard system architecture — data pipeline, RAG agent, and dashboard">
+    <img src="assets/DepositGuard_Architecture.png" width="100%" alt="DepositGuard system architecture — data pipeline, RAG agent, and dashboard">
   </a>
 </p>
 <p align="center"><em>GitHub doesn't autoplay video in READMEs — click the diagram above to watch the animated version (assets/DepositGuard_Architecture_Animated.mp4).</em></p>
@@ -165,17 +165,17 @@ The full system is served as a three-page live dashboard (`app.py`):
 
 - **Fraud dashboard** — portfolio-level metrics (accounts scored, predicted HIGH-risk rate, risk-tier breakdown), a risk-tier distribution donut, model comparison chart, fraud-probability distribution, and top-5 SHAP features / top-5 highest-risk accounts at a glance.
 
-  <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard1.png" width="850" alt="Fraud dashboard page"></p>
+  <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard1.png" width="100%" alt="Fraud dashboard page"></p>
 
 - **Model insights** — the full 4-model comparison (AUC-ROC / Precision / Recall / F1 / FPR) with the winning model highlighted, the SHAP feature-importance chart, and a recomputed top-10 SHAP breakdown as a cross-check.
 
-  <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard2.png" width="850" alt="Model insights page — model comparison chart"></p>
-  <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard3.png" width="850" alt="Model insights page — SHAP feature importance and signal breakdown"></p>
+  <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard2.png" width="100%" alt="Model insights page — model comparison chart"></p>
+  <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard3.png" width="100%" alt="Model insights page — SHAP feature importance and signal breakdown"></p>
 
 - **Case review** — pick any HIGH-risk account to see its top-5 SHAP drivers, its full LangGraph escalation report (confidence, root cause, regulatory flags, analyst question, self-critique, final decision), and fraud-probability trends binned by feature.
 
-  <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard4.png" width="850" alt="Case review page — account SHAP drivers and escalation report"></p>
-  <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard5.png" width="850" alt="Case review page — fraud probability by feature bin and distribution"></p>
+  <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard4.png" width="100%" alt="Case review page — account SHAP drivers and escalation report"></p>
+  <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard5.png" width="100%" alt="Case review page — fraud probability by feature bin and distribution"></p>
 
 **Live app:** [depositguard.streamlit.app](https://depositguard.streamlit.app/)
 
