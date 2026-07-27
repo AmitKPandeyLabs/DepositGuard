@@ -157,8 +157,8 @@ Sample accounts from real generated escalation reports:
 | 986601 | 0.8857 | HIGH | ESCALATE |
 
 ## Streamlit Dashboard
-
-The full system is served as a three-page live dashboard (`app.py`):
+**Live app:** [depositguard.streamlit.app](https://depositguard.streamlit.app/)
+The full system is served as a three-page live dashboard:
 
 - **Fraud dashboard** — portfolio-level metrics (accounts scored, predicted HIGH-risk rate, risk-tier breakdown), a risk-tier distribution donut, model comparison chart, fraud-probability distribution, and top-5 SHAP features / top-5 highest-risk accounts at a glance.
 
