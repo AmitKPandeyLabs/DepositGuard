@@ -80,19 +80,19 @@ Ten behavioral risk features are engineered on top of the raw dataset (`notebook
 
 ### 2. Exploratory Data Analysis
 
-**Fraud rate by month** (`outputs/fraud_by_month.png`) — fraud rate climbs from a low of 0.87% (month 2) to a high of 1.47% (month 7) across the dataset's 8-month span, indicating real temporal drift rather than a stationary fraud rate. This is why the modeling stage uses a temporal split (train on months 0–5, test on 6–7) instead of a random shuffle — a random split would let the model implicitly "see" the harder, higher-fraud-rate future during training.
+**Fraud rate by month** — fraud rate climbs from a low of 0.87% (month 2) to a high of 1.47% (month 7) across the dataset's 8-month span, indicating real temporal drift rather than a stationary fraud rate. This is why the modeling stage uses a temporal split (train on months 0–5, test on 6–7) instead of a random shuffle — a random split would let the model implicitly "see" the harder, higher-fraud-rate future during training.
 
 <p align="center"><img src="outputs/fraud_by_month.png" width="800" alt="Fraud rate by month"></p>
 
-**Feature distributions by fraud status** (`outputs/feature_distributions.png`) — `income`, `customer_age`, and `credit_risk_score` split by `fraud_bool` show visibly shifted distributions for fraudulent applications, most notably in `credit_risk_score`, which also emerges as the single strongest linear correlate of fraud (r = 0.071) among the original numeric features.
+**Feature distributions by fraud status** — `income`, `customer_age`, and `credit_risk_score` split by `fraud_bool` show visibly shifted distributions for fraudulent applications, most notably in `credit_risk_score`, which also emerges as the single strongest linear correlate of fraud (r = 0.071) among the original numeric features.
 
 <p align="center"><img src="outputs/feature_distributions.png" width="800" alt="Feature distributions by fraud status"></p>
 
-**Correlation heatmap** (`outputs/correlation_heatmap.png`) — no single original feature strongly predicts fraud in isolation (correlations with `fraud_bool` are all comparatively weak), which is the core motivation for engineering composite behavioral features rather than relying on raw fields alone.
+**Correlation heatmap** — no single original feature strongly predicts fraud in isolation (correlations with `fraud_bool` are all comparatively weak), which is the core motivation for engineering composite behavioral features rather than relying on raw fields alone.
 
 <p align="center"><img src="outputs/correlation_heatmap.png" width="800" alt="Correlation heatmap"></p>
 
-**Fraud rate by category** (`outputs/fraud_by_category.png`) — `payment_type` category `AC` has the highest fraud rate (1.67%) among payment types, and `employment_status` category `CC` has the highest fraud rate (2.47%) among employment categories, both well above their peers — confirming categorical fields carry real signal despite being anonymized.
+**Fraud rate by category** — `payment_type` category `AC` has the highest fraud rate (1.67%) among payment types, and `employment_status` category `CC` has the highest fraud rate (2.47%) among employment categories, both well above their peers — confirming categorical fields carry real signal despite being anonymized.
 
 <p align="center"><img src="outputs/fraud_by_category.png" width="800" alt="Fraud rate by category"></p>
 
