@@ -133,11 +133,8 @@ Top SHAP-ranked features driving individual risk scores (`notebooks/04_risk_scor
 HIGH-risk accounts (fraud probability ≥ 0.75) don't stop at a risk score — they flow into a three-node LangGraph pipeline (`rag_agent/agents.py`) that investigates and then deterministically decides what happens to the account:
 
 <p align="center">
-  <a href="assets/DepositGuard_Architecture_Animated.mp4">
-    <img src="assets/DepositGuard_Architecture.png" width="100%" alt="DepositGuard system architecture — data pipeline, RAG agent, and dashboard">
-  </a>
+  <img src="assets/DepositGuard_Architecture_Animated.gif" width="100%" alt="DepositGuard system architecture — data pipeline, RAG agent, and dashboard (animated)">
 </p>
-<p align="center"><em>GitHub doesn't autoplay video in READMEs — click the diagram above to watch the animated version (assets/DepositGuard_Architecture_Animated.mp4).</em></p>
 
 1. **Triage** — reads each account's precomputed fraud probability and SHAP profile from `scored_accounts.csv` and routes by fixed risk-tier thresholds: HIGH → Investigation, MEDIUM → flagged for manual review, LOW → auto-cleared. No LLM involved.
 2. **Investigation** — retrieves relevant regulatory/fraud-typology text from a ChromaDB knowledge base (Reg E, NACHA return codes, BSA/AML overview, and fraud-type definitions, chunked and embedded from `rag_agent/fraud_kb/`), then asks an LLM to reason over the account's real top-5 SHAP features plus that retrieved context — **Google Gemini first, Groq (Llama 3.3 70B) as automatic fallback** on any Gemini failure. The LLM is constrained to return only `confidence`, `root_cause`, `regulatory_flags`, and a self-`critique`, each grounded explicitly in the SHAP features and retrieved text provided — it cannot invent a feature or cite a regulation not present in the retrieved context. If the returned confidence score falls below 0.80, the conditional edge routes back into Investigation for a second, broadened retrieval pass (capped at 2 passes total) before proceeding.
