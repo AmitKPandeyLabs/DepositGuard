@@ -2,6 +2,12 @@
 
 <p align="center"><img src="assets/DepositGuard_Cover.png" width="700" alt="DepositGuard — Bank Account Fraud Detection System"></p>
 
+<p align="center">
+  <a href="https://depositguard.streamlit.app/" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/Live%20Demo-Streamlit%20Cloud-FF4B4B.svg?style=for-the-badge&logo=streamlit&logoColor=white" alt="Live Demo">
+  </a>
+</p>
+
 <p align="left">
   <img src="https://img.shields.io/badge/Python-3.11%2B-blue.svg?style=for-the-badge&logo=python&logoColor=white" alt="Python Version">
   <img src="https://img.shields.io/badge/XGBoost-3.2-green.svg?style=for-the-badge&logo=xgboost&logoColor=white" alt="XGBoost">
@@ -174,7 +180,7 @@ The full system is served as a three-page live dashboard (`app.py`):
   <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard4.png" width="100%" alt="Case review page — account SHAP drivers and escalation report"></p>
   <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard5.png" width="100%" alt="Case review page — fraud probability by feature bin and distribution"></p>
 
-**Live app:** [depositguard.streamlit.app](https://depositguard.streamlit.app/)
+**Live app:** <a href="https://depositguard.streamlit.app/" target="_blank" rel="noopener noreferrer">depositguard.streamlit.app</a>
 
 ## Conclusion
 
