@@ -179,7 +179,6 @@ The full system is served as a three-page live dashboard:
 - **Case review** — pick any HIGH-risk account to see its top-5 SHAP drivers, its full LangGraph escalation report (confidence, root cause, regulatory flags, analyst question, self-critique, final decision), and fraud-probability trends binned by feature.
 
   <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard4.png" width="100%" alt="Case review page — account SHAP drivers and escalation report"></p>
-  <p align="center"><img src="assets/DepositGuard_Streamlit_Dashboard5.png" width="100%" alt="Case review page — fraud probability by feature bin and distribution"></p>
 
 **Live app:** <a href="https://depositguard.streamlit.app/" target="_blank" rel="noopener noreferrer">depositguard.streamlit.app</a>
 
